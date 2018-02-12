@@ -5,7 +5,7 @@ maintainer James Moger <james.moger@gitblit.com>
 run apt-get update
 run apt-get install -q -y git-core redis-server
 
-# Install Java 7
+# Install Java 8
 
 run DEBIAN_FRONTEND=noninteractive apt-get install -q -y software-properties-common
 run DEBIAN_FRONTEND=noninteractive apt-get install -q -y python-software-properties
@@ -28,6 +28,7 @@ run rm -f /root/gitblit.tar.gz
 run mkdir -p /opt/gitblit-data
 
 run mv /opt/gitblit/data/* /opt/gitblit-data
+VOLUME /opt/gitblit-data
 
 # Adjust the default Gitblit settings to bind to 80, 443, 9418, 29418, and allow RPC administration.
 #
@@ -35,13 +36,13 @@ run mv /opt/gitblit/data/* /opt/gitblit-data
 # is streaming.  This is why the original properties file was renamed earlier.
 
 run echo "server.httpPort=80" >> /opt/gitblit-data/gitblit.properties
-run echo "web.enableRpcManagement=true" >> /opt/gitblit-data/gitblit.properties
-run echo "web.enableRpcAdministration=true" >> /opt/gitblit-data/gitblit.properties
+#run echo "web.enableRpcManagement=true" >> /opt/gitblit-data/gitblit.properties
+#run echo "web.enableRpcAdministration=true" >> /opt/gitblit-data/gitblit.properties
 
 # Setup the Docker container environment and run Gitblit
 expose 80
 expose 443
-expose 9418
+#expose 9418
 expose 29418
 
 WORKDIR /opt/gitblit
