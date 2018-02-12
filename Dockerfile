@@ -39,12 +39,11 @@ run echo "web.enableRpcManagement=true" >> /opt/gitblit-data/gitblit.properties
 run echo "web.enableRpcAdministration=true" >> /opt/gitblit-data/gitblit.properties
 
 # Setup the Docker container environment and run Gitblit
-#workdir /opt/gitblit
 expose 80
 expose 443
 expose 9418
 expose 29418
 
+WORKDIR /opt/gitblit
 ADD entrypoint.sh /usr/local/bin/
 ENTRYPOINT /usr/local/bin/entrypoint.sh
-#cmd ["java", "-server", "-Xmx1024M", "-Djava.awt.headless=true", "-jar", "/opt/gitblit/gitblit.jar", "--baseFolder", "/opt/gitblit-data"]
