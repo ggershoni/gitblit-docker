@@ -46,5 +46,6 @@ expose 9418
 expose 29418
 
 ADD entrypoint.sh /usr/local/bin/
+ADD declare_properties_dictionary.sh /usr/local/bin/
 ENTRYPOINT /usr/local/bin/entrypoint.sh
 #cmd ["java", "-server", "-Xmx1024M", "-Djava.awt.headless=true", "-jar", "/opt/gitblit/gitblit.jar", "--baseFolder", "/opt/gitblit-data"]
