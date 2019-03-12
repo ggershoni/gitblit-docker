@@ -14,7 +14,9 @@ function set_gitblit_property {
     local gitblit_property=${gitblit_properties[$env_var_name]}
 
     echo "Found '$env_var_name' do setting property '$gitblit_property' to value '${env_var_value} in file $GITBLIT_PROPERTIES_FILE"
-    echo "${gitblit_property}=${env_var_value}" >> $GITBLIT_PROPERTIES_FILE
+    if [ "$(grep "${gitblit_property}=${env_var_value}" $GITBLIT_PROPERTIES_FILE | wc -l)" -eq "0" ]; then
+      echo "${gitblit_property}=${env_var_value}" >> $GITBLIT_PROPERTIES_FILE
+    fi
   else
     echo "No property exists with name $env_var_name"
   fi
